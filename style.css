@@ -1,0 +1,327 @@
+/* === ЗАГАЛЬНІ СТИЛІ ==== */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background-color: #fffaf5;
+  color: #222;
+}
+
+main {
+  margin-top: 20px;
+  padding: 20px;
+}
+
+a {
+  text-decoration: none;
+  color: #004080;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a:active {
+  color: #cc5500; /* темно-помаранчевий при кліку */
+}
+
+/* Атрибутний селектор */
+a[target="_blank"] {
+  color: rgb(0, 100, 200);
+}
+
+/* Атрибутний селектор з частковим збігом */
+a[href*="news"] {
+  color: hsl(200, 70%, 35%);
+}
+
+/* === НАВІГАЦІЯ ==== */
+nav {
+  display: block;
+  text-align: left;
+  background-color: #e6e6e6;
+  padding: 10px 0;
+  margin-top: 100px;
+  z-index: 5;
+}
+
+nav a {
+  margin: 0 10px;
+  padding: 6px 10px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+nav a:hover {
+  background-color: #cce5ff;
+}
+
+/* === 1. ГОЛОВНА СТОРІНКА ==== */
+
+/* 1.1 Абсолютно позиціонований header */
+body.main-page header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #f2f2f2;
+  text-align: center;
+  padding: 10px 0;
+  z-index: 10;
+  border-bottom: 2px solid #ccc;
+}
+
+header img {
+  vertical-align: middle;
+}
+
+/* 1.2 Блок опису мети порталу */
+#about {
+  margin: 10px;
+  padding: 25px;
+  border: 2px solid #ccc;
+  background-color: #fafafa;
+}
+
+/* Використання float для ілюстрації */
+#about img {
+  float: right;
+  margin-left: 10px;
+}
+
+/* 1.3 Блок головного редактора */
+body.main-page article:nth-of-type(2) {
+  position: relative;
+  transition: all 0.3s ease;
+  padding: 15px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  width: fit-content;
+  max-height: 250px; /* Додано overflow */
+  overflow-y: auto; /* з’явиться вертикальний скрол, якщо багато тексту */
+}
+
+/* При наведенні змінюється одразу 3 властивості */
+article:nth-of-type(2):hover {
+  top: -5px;
+  left: -5px;
+  background-color: #f5f5f5;
+  border-color: #888;
+  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* 1.4 Футер */
+footer {
+  background-color: #f2f2f2;
+  text-align: center;
+  padding: 20px;
+  border-top: 2px solid #ccc;
+  transition: transform 3s ease;
+}
+
+/* Фокус: збільшення + плавне повернення */
+footer:focus {
+  transform: scale(1.2);
+}
+footer {
+  transition: transform 0.5s ease-in-out;
+}
+footer:not(:focus) {
+  transform: scale(1);
+}
+
+/* 1.5 Перший рядок тексту про редактора — курсив */
+article:nth-of-type(2) p:first-line {
+  font-style: italic;
+}
+
+/* === ТАБЛИЦЯ === */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  overflow-x: auto;
+  display: block;
+}
+
+th, td {
+  border: 1px solid #aaa;
+  padding: 8px;
+  text-align: center;
+}
+
+caption {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* === БЛОК З ПОСИЛАННЯМИ (aside) === */
+aside {
+  background-color: #f9f9f9;
+  padding: 15px;
+  margin: 20px;
+  border: 1px solid #ccc;
+}
+
+/* === 2. НОВИНИ КУЛЬТУРИ === */
+body.culture-page header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #f8f8f8;
+  text-align: center;
+  padding: 10px 0;
+  z-index: 100;
+  border-bottom: 2px solid #ccc;
+}
+
+body.culture-page article {
+  border: 4px solid #800000;
+  border-left-style: dashed;
+  margin: 25px;
+  padding: 15px;
+  background-color: #fff;
+}
+
+/* Комбінатор > */
+body.culture-page main > article {
+  background-color: #fffafa;
+}
+
+/* 2.3 Автор */
+body.culture-page article p:last-of-type {
+  font-style: italic;
+  font-weight: 300;
+  font-size: 0.9em;
+}
+
+/* 2.4 Фото новини */
+body.culture-page article img {
+  width: 100%;
+  height: auto;
+  transition: filter 0.5s ease;
+}
+
+body.culture-page article img:hover {
+  filter: invert(100%);
+}
+
+/* === ДОДАТКОВІ СТИЛІ ТА АДАПТИВНІСТЬ === */
+h1, h2, h3, p {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+/* ГАРЯЧІ НОВИНИ, ЕКОНОМІКА */
+body.hot-page header,
+body.economy-page header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #f8f8f8;
+  text-align: center;
+  padding: 10px 0;
+  border-bottom: 2px solid #ccc;
+  z-index: 100;
+}
+
+body.hot-page main,
+body.economy-page main {
+  margin-top: 100px;
+  padding: 20px;
+}
+
+/* === FLEX — ЗВОРОТНІЙ ЗВ’ЯЗОК === */
+body.feedback-page main {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  align-content: center;
+}
+
+body.feedback-page header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #f8f8f8;
+  text-align: center;
+  padding: 10px 0;
+  border-bottom: 2px solid #ccc;
+  z-index: 100;
+}
+
+.feedback-page fieldset {
+  order: 0;
+  align-self: flex-start;
+  padding: 15px;
+  border: 2px solid #999;
+  background-color: #fdfdfd;
+  flex-grow: 0;
+  flex-shrink: 1;
+}
+
+.feedback-page button {
+  order: 1;
+  padding: 8px 16px;
+  background-color: #004080;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.feedback-page button:hover {
+  background-color: #0066cc;
+}
+
+/* === GRID — ІНШІ СТОРІНКИ === */
+body.hot-page main,
+body.economy-page main {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 20px;
+}
+
+body.hot-page article,
+body.economy-page article {
+  border: 1px solid #aaa;
+  padding: 15px;
+  background-color: #fff;
+  transition: transform 0.3s ease;
+}
+
+body.hot-page article:hover,
+body.economy-page article:hover {
+  transform: scale(1.03);
+}
+
+/* === АДАПТИВНІСТЬ І ПРОКРУТКА === */
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+
+main, header, footer, nav, article, section, aside {
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow: visible;
+}
+
+table {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+/* Комбінатор ~ : усі параграфи після заголовка */
+h2 ~ p {
+  color: rgb(60, 60, 60);
+}
