@@ -58,6 +58,10 @@ nav a:hover {
 
 /* === 1. ГОЛОВНА СТОРІНКА ==== */
 
+body.main-page {
+  position: relative;
+}
+
 /* 1.1 Абсолютно позиціонований header */
 body.main-page header {
   position: absolute;
@@ -216,7 +220,7 @@ h1, h2, h3, p {
 /* ГАРЯЧІ НОВИНИ, ЕКОНОМІКА */
 body.hot-page header,
 body.economy-page header {
-  position: fixed;
+  position: relative;
   top: 0;
   left: 0;
   width: 100%;
@@ -244,7 +248,7 @@ body.feedback-page main {
 }
 
 body.feedback-page header {
-  position: fixed;
+  position: relative;
   top: 0;
   left: 0;
   width: 100%;
