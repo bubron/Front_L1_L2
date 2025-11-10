@@ -26,8 +26,8 @@ a:active {
 }
 
 /* Атрибутний селектор */
-a[target="_blank"] {
-  color: rgb(0, 100, 200);
+a[target="_blank"]:active {
+  color: rgb(195, 91, 0);
 }
 
 /* Атрибутний селектор з частковим збігом */
