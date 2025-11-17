@@ -12,18 +12,29 @@
 </header>
 
 <nav>
-  <a href="index.html">Головна</a> |
-  <a href="hot.html">Гарячі новини</a> |
-  <a href="culture.html">Новини культури</a> |
-  <a href="economy.html">Новини економіки</a> |
-  <a href="feedback.html">Зворотній зв'язок</a> |
+  <ul>
+    <li><a href="index.html">Головна</a></li>
+    <li><a href="hot.html">Гарячі новини</a></li>
+    <li>
+      <a href="culture.html" data-dropdown="culture">Новини культури</a>
+      <div class="dropdown" aria-hidden="true">
+        <a href="culture.html#theatre">Театр</a>
+        <a href="culture.html#music">Музика</a>
+        <a href="culture.html#cinema">Кіно</a>
+      </div>
+    </li>
+    <li><a href="economy.html">Новини економіки</a></li>
+    <li><a href="feedback.html">Зворотній зв'язок</a></li>
+  </ul>
 </nav>
 
 <main>
   <h2>Форма зворотнього зв'язку</h2>
 
-  <form>
-    <fieldset>
+  <!-- FLEX-КОНТЕЙНЕР -->
+  <form class="feedback-container">
+
+    <fieldset class="feedback-fieldset">
       <legend>Персональна інформація</legend>
 
       <label>Прізвище та ім'я:
@@ -49,25 +60,31 @@
       </label>
     </fieldset>
 
-    <label>Мета зворотнього зв’язку:
+    <label class="feedback-purpose">Мета зворотнього зв’язку:
       <select name="purpose">
         <option>Співпраця</option>
         <option>Скарга на порушення права власності</option>
         <option>Пропозиція</option>
         <option>Наявність помилки</option>
       </select>
-    </label><br><br>
+    </label>
 
-    <label>Детально:<br>
-      <textarea name="details" rows="6" cols="60" maxlength="1000" placeholder="Опишіть детально вашу думку або проблему"></textarea>
-    </label><br><br>
+    <label class="feedback-details">Детально:<br>
+      <div class="feedback-textarea-wrapper">
+        <textarea name="details" rows="6" cols="60" maxlength="1000" placeholder="Опишіть детально вашу думку або проблему"></textarea>
+        <div class="feedback-tooltip">Дякуючи Вам, ми стаємо кращі! Конкретизуйте мету звернення, будь ласка</div>
+      </div>
+    </label>
 
-    <label>
+    <label class="feedback-agree">
       <input type="checkbox" required> Я погоджуюсь на обробку персональних даних
-    </label><br><br>
+    </label>
 
-    <button type="submit">Відправити</button>
-    <button type="reset">Очистити</button>
+    <div class="feedback-buttons">
+      <button type="submit">Відправити</button>
+      <button type="reset">Очистити</button>
+    </div>
+
   </form>
 
   <p><a href="index.html">Повернутись на головну</a></p>
@@ -77,5 +94,6 @@
   <p>&copy; 2025 BloomNews</p>
 </footer>
 
+<script src="script.js"></script>
 </body>
 </html>

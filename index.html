@@ -4,21 +4,11 @@
   <meta charset="utf-8">
   <title>BloomNews — Головна</title>
   <link rel="stylesheet" href="style.css">
-
   <style>
-  h1 {
-    color: red; /* Колір через name */
-  }
-
-  h3 {
-    color: #2e8b57; /* Колір через HEX */
-  }
-
-  p {
-    color: rgb(50, 50, 50); /* Колір через RGB */
-  }
-</style>
-
+  h1 { color: red; }
+  h3 { color: #2e8b57; }
+  p { color: rgb(50, 50, 50); }
+  </style>
 </head>
 
 <body class="main-page">
@@ -28,13 +18,26 @@
 </header>
 
 <nav>
-  <a href="index.html">Головна</a> |
-  <a href="hot.html">Гарячі новини</a> |
-  <a href="culture.html">Новини культури</a> |
-  <a href="economy.html">Новини економіки</a> |
-  <a href="feedback.html">Зворотній зв'язок</a> |
-  <a href="#about">Про портал</a> |
-  <a href="#staff">Працівники</a>
+  <ul>
+    <li><a href="index.html">Головна</a></li>
+    <li><a href="hot.html">Гарячі новини</a></li>
+
+    <!-- Новини культури з підменю -->
+    <li>
+      <a href="culture.html" data-dropdown="culture">Новини культури</a>
+      <div class="dropdown" aria-hidden="true">
+        <a href="culture.html#theatre">Театр</a>
+        <a href="culture.html#music">Музика</a>
+        <a href="culture.html#cinema">Кіно</a>
+        <a href="culture.html#painting">Живопис</a>
+      </div>
+    </li>
+
+    <li><a href="economy.html">Новини економіки</a></li>
+    <li><a href="feedback.html">Зворотній зв'язок</a></li>
+    <li><a href="#about">Про портал</a></li>
+    <li><a href="#staff">Працівники</a></li>
+  </ul>
 </nav>
 
 <main>
@@ -137,5 +140,6 @@
   <p>&copy; 2025 BloomNews</p>
 </footer>
 
+<script src="script.js"></script>
 </body>
 </html>

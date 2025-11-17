@@ -12,17 +12,35 @@
 </header>
 
 <nav>
-  <a href="index.html">Головна</a> |
-  <a href="hot.html">Гарячі новини</a> |
-  <a href="culture.html">Новини культури</a> |
-  <a href="economy.html">Новини економіки</a> |
-  <a href="feedback.html">Зворотній зв'язок</a> |
+  <ul>
+    <li><a href="index.html">Головна</a></li>
+    <li><a href="hot.html">Гарячі новини</a></li>
+    <li>
+      <a href="culture.html" data-dropdown="culture">Новини культури</a>
+      <div class="dropdown" aria-hidden="true">
+        <a href="#theatre">Театр</a>
+        <a href="#music">Музика</a>
+        <a href="#cinema">Кіно</a>
+        <a href="#painting">Живопис</a>
+      </div>
+    </li>
+    <li><a href="economy.html">Новини економіки</a></li>
+    <li><a href="feedback.html">Зворотній зв'язок</a></li>
+  </ul>
 </nav>
 
 <main>
   <h2>Останні культурні новини</h2>
 
-  <article>
+  <!-- Пошук по назві новини -->
+  <div class="culture-search">
+    <label for="cultureSearchInput">Пошук за назвою:</label>
+    <input id="cultureSearchInput" type="text" placeholder="Введіть частину назви...">
+    <button id="cultureSearchBtn">Пошук</button>
+  </div>
+
+  <!-- Важлива (суспільно) новина: data-important="true" -->
+  <article data-important="true">
     <h3>Виставка сучасного мистецтва</h3>
     <img src="News_1.jpg" width="800" alt="Фото новини 1">
     <p>У столиці відкрилася виставка молодих митців. Відвідувачі можуть побачити роботи у жанрі інсталяції та живопису.</p>
@@ -50,5 +68,6 @@
   <p>&copy; 2025 BloomNews — Новини культури</p>
 </footer>
 
+<script src="script.js"></script>
 </body>
 </html>

@@ -12,11 +12,20 @@
 </header>
 
 <nav>
-  <a href="index.html">Головна</a> |
-  <a href="hot.html">Гарячі новини</a> |
-  <a href="culture.html">Новини культури</a> |
-  <a href="economy.html">Новини економіки</a> |
-  <a href="feedback.html">Зворотній зв'язок</a> |
+  <ul>
+    <li><a href="index.html">Головна</a></li>
+    <li><a href="hot.html">Гарячі новини</a></li>
+    <li>
+      <a href="culture.html" data-dropdown="culture">Новини культури</a>
+      <div class="dropdown" aria-hidden="true">
+        <a href="culture.html#theatre">Театр</a>
+        <a href="culture.html#music">Музика</a>
+        <a href="culture.html#cinema">Кіно</a>
+      </div>
+    </li>
+    <li><a href="economy.html">Новини економіки</a></li>
+    <li><a href="feedback.html">Зворотній зв'язок</a></li>
+  </ul>
 </nav>
 
 <main>
@@ -26,5 +35,6 @@
   <p>&copy; 2025 BloomNews — Гарячі новини</p>
 </footer>
 
+<script src="script.js"></script>
 </body>
 </html>

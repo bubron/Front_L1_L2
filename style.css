@@ -1,4 +1,6 @@
-/* === ЗАГАЛЬНІ СТИЛІ ==== */
+/* =========================================================
+   === ГЛОБАЛЬНІ (СПІЛЬНІ) СТИЛІ ДЛЯ ВСІХ СТОРІНОК ===
+   ========================================================= */
 body {
   margin: 0;
   padding: 0;
@@ -21,48 +23,138 @@ a:hover {
   text-decoration: underline;
 }
 
-a:active {
-  color: #cc5500; /* темно-помаранчевий при кліку */
-}
+a:active { color: #cc5500; }
+a[target="_blank"]:active { color: rgb(195, 91, 0); }
+a[href*="news"] { color: hsl(200, 70%, 35%); }
 
-/* Атрибутний селектор */
-a[target="_blank"]:active {
-  color: rgb(195, 91, 0);
-}
 
-/* Атрибутний селектор з частковим збігом */
-a[href*="news"] {
-  color: hsl(200, 70%, 35%);
-}
 
-/* === НАВІГАЦІЯ ==== */
-nav {
-  display: block;
-  text-align: left;
-  background-color: #e6e6e6;
+/* =========================================================
+   === СПІЛЬНИЙ HEADER ДЛЯ hot-page, economy-page, feedback-page ===
+   ========================================================= */
+body.hot-page header,
+body.economy-page header,
+body.feedback-page header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #f2f2f2;
+  text-align: center;
   padding: 10px 0;
+  z-index: 10;
+  border-bottom: 2px solid #ccc;
+}
+
+
+
+/* =========================================================
+   === НАВІГАЦІЯ ===
+   ========================================================= */
+
+/* Горизонтальне меню (за замовчуванням) */
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: #e6e6e6;
+  padding: 10px;
   margin-top: 100px;
   z-index: 5;
 }
 
-nav a {
-  margin: 0 10px;
-  padding: 6px 10px;
-  border-radius: 4px;
-  transition: background-color 0.3s ease;
+/* Кожен пункт */
+nav ul li {
+  position: relative;
 }
 
-nav a:hover {
+/* Посилання */
+nav ul li > a {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 4px;
+  color: #004080;
+}
+
+nav ul li > a:hover {
   background-color: #cce5ff;
 }
 
-/* === 1. ГОЛОВНА СТОРІНКА ==== */
+
+
+/* =========================================================
+   === DROPDOWN (підменю Новини культури) ===
+   ========================================================= */
+nav ul li .dropdown {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: calc(100% + 6px);
+  background: #fff;
+  border: 1px solid #ddd;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+  border-radius: 6px;
+  padding: 6px 8px;
+  min-width: 130px;
+  z-index: 200;
+}
+
+nav ul li .dropdown a {
+  display: block;
+  padding: 6px 8px;
+  color: #003366;
+  border-radius: 4px;
+}
+
+nav ul li .dropdown a:hover {
+  background: #f0f8ff;
+}
+
+/* Активне підменю */
+nav ul li.open > .dropdown {
+  display: block;
+}
+
+
+
+/* =========================================================
+   === АДАПТИВНЕ МЕНЮ (тільки на main-page до 768px) ===
+   ========================================================= */
+@media (max-width: 768px) {
+  body.main-page nav ul {
+    flex-direction: column;
+    align-items: flex-start;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 220px;
+    padding-top: calc(var(--header-h, 72px));
+    box-shadow: 2px 0 8px rgba(0,0,0,0.08);
+    overflow-y: auto;
+    margin-top: 0;
+  }
+
+  body.main-page main {
+    margin-left: 240px;
+  }
+}
+
+
+
+/* =========================================================
+   === 1. ГОЛОВНА СТОРІНКА (main-page) ===
+   ========================================================= */
 
 body.main-page {
   position: relative;
 }
 
-/* 1.1 Абсолютно позиціонований header */
+/* Header */
 body.main-page header {
   position: absolute;
   top: 0;
@@ -75,11 +167,9 @@ body.main-page header {
   border-bottom: 2px solid #ccc;
 }
 
-header img {
-  vertical-align: middle;
-}
+header img { vertical-align: middle; }
 
-/* 1.2 Блок опису мети порталу */
+/* About */
 #about {
   margin: 10px;
   padding: 25px;
@@ -87,13 +177,12 @@ header img {
   background-color: #fafafa;
 }
 
-/* Використання float для ілюстрації */
 #about img {
   float: right;
   margin-left: 10px;
 }
 
-/* 1.3 Блок головного редактора */
+/* Блок головного редактора */
 body.main-page article:nth-of-type(2) {
   position: relative;
   transition: all 0.3s ease;
@@ -101,20 +190,19 @@ body.main-page article:nth-of-type(2) {
   border: 1px solid #ddd;
   background-color: #fff;
   width: fit-content;
-  max-height: 250px; /* Додано overflow */
-  overflow-y: auto; /* з’явиться вертикальний скрол, якщо багато тексту */
+  max-height: 250px;
+  overflow-y: auto;
 }
 
-/* При наведенні змінюється одразу 3 властивості */
-article:nth-of-type(2):hover {
+body.main-page article:nth-of-type(2):hover {
   top: -5px;
   left: -5px;
   background-color: #f5f5f5;
   border-color: #888;
-  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 3px 3px 8px rgba(0,0,0,0.2);
 }
 
-/* 1.4 Футер */
+/* Footer */
 footer {
   background-color: #f2f2f2;
   text-align: center;
@@ -123,51 +211,22 @@ footer {
   transition: transform 3s ease;
 }
 
-/* Фокус: збільшення + плавне повернення */
-footer:focus {
-  transform: scale(1.2);
-}
-footer {
-  transition: transform 0.5s ease-in-out;
-}
-footer:not(:focus) {
-  transform: scale(1);
-}
+footer:focus { transform: scale(1.2); }
+footer { transition: transform 0.5s ease-in-out; }
+footer:not(:focus) { transform: scale(1); }
 
-/* 1.5 Перший рядок тексту про редактора — курсив */
+/* Курсив у першому рядку */
 article:nth-of-type(2) p:first-line {
   font-style: italic;
 }
 
-/* === ТАБЛИЦЯ === */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 10px;
-  overflow-x: auto;
-  display: block;
-}
 
-th, td {
-  border: 1px solid #aaa;
-  padding: 8px;
-  text-align: center;
-}
 
-caption {
-  font-weight: bold;
-  margin-bottom: 10px;
-}
+/* =========================================================
+   === 2. СТОРІНКА «Новини культури» (culture-page) ===
+   ========================================================= */
 
-/* === БЛОК З ПОСИЛАННЯМИ (aside) === */
-aside {
-  background-color: #f9f9f9;
-  padding: 15px;
-  margin: 20px;
-  border: 1px solid #ccc;
-}
-
-/* === 2. НОВИНИ КУЛЬТУРИ === */
+/* Fixed header */
 body.culture-page header {
   position: fixed;
   top: 0;
@@ -180,27 +239,77 @@ body.culture-page header {
   border-bottom: 2px solid #ccc;
 }
 
+body.culture-page main {
+  margin-top: 10px;
+}
+
 body.culture-page article {
   border: 4px solid #800000;
   border-left-style: dashed;
   margin: 25px;
   padding: 15px;
   background-color: #fff;
+  position: relative;
 }
 
-/* Комбінатор > */
-body.culture-page main > article {
-  background-color: #fffafa;
+/* Увага */
+.culture-title-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-/* 2.3 Автор */
+.culture-title-wrapper .attention {
+  color: red;
+  font-weight: 700;
+  font-size: 1.2em;
+  display: none;
+  margin-left: 6px;
+}
+
+.culture-title-wrapper .attention.visible {
+  display: inline-block;
+  animation: attentionPulse 0.4s ease-in-out;
+}
+
+@keyframes attentionPulse {
+  0% { transform: scale(1); opacity: 0.9; }
+  50% { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(1); opacity: 0.95; }
+}
+
+/* Пошук */
+.culture-search {
+  margin: 10px 25px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.culture-search input[type="text"] {
+  padding: 8px;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  width: 340px;
+}
+
+.culture-search button {
+  padding: 8px 12px;
+  background-color: #004080;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+
+
 body.culture-page article p:last-of-type {
   font-style: italic;
   font-weight: 300;
   font-size: 0.9em;
 }
 
-/* 2.4 Фото новини */
 body.culture-page article img {
   width: 100%;
   height: auto;
@@ -211,80 +320,106 @@ body.culture-page article img:hover {
   filter: invert(100%);
 }
 
-/* === ДОДАТКОВІ СТИЛІ ТА АДАПТИВНІСТЬ === */
-h1, h2, h3, p {
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
 
-/* ГАРЯЧІ НОВИНИ, ЕКОНОМІКА */
-body.hot-page header,
-body.economy-page header {
-  position: relative;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background-color: #f8f8f8;
-  text-align: center;
-  padding: 10px 0;
-  border-bottom: 2px solid #ccc;
-  z-index: 100;
-}
 
-body.hot-page main,
-body.economy-page main {
-  margin-top: 100px;
-  padding: 20px;
-}
+/* =========================================================
+   === 3. СТОРІНКА «Зворотній зв’язок» (feedback-page) ===
+   ========================================================= */
 
-/* === FLEX — ЗВОРОТНІЙ ЗВ’ЯЗОК === */
-body.feedback-page main {
+/* === FLEX-КОНТЕЙНЕР === */
+.feedback-container {
   display: flex;
   flex-flow: column nowrap;
-  justify-content: center;
-  align-items: center;
   gap: 20px;
-  align-content: center;
+
+  justify-content: flex-start;
+  align-items: stretch;
+  align-content: flex-start;
 }
 
-body.feedback-page header {
-  position: relative;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background-color: #f8f8f8;
-  text-align: center;
-  padding: 10px 0;
-  border-bottom: 2px solid #ccc;
-  z-index: 100;
-}
+/* === FLEX-ЕЛЕМЕНТИ === */
 
-.feedback-page fieldset {
+/* fieldset – перший елемент */
+.feedback-fieldset {
   order: 0;
-  align-self: flex-start;
-  padding: 15px;
-  border: 2px solid #999;
-  background-color: #fdfdfd;
+  flex-grow: 0;
+  flex-shrink: 1;
+  align-self: stretch;
+}
+
+/* Мета звернення */
+.feedback-purpose {
+  order: 1;
   flex-grow: 0;
   flex-shrink: 1;
 }
 
-.feedback-page button {
-  order: 1;
-  padding: 8px 16px;
-  background-color: #004080;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+/* Деталі */
+.feedback-details {
+  order: 2;
+  flex-grow: 1;
+  flex-shrink: 1;
+  align-self: stretch;
 }
 
-.feedback-page button:hover {
-  background-color: #0066cc;
+/* Чекбокс */
+.feedback-agree {
+  order: 3;
+  flex-grow: 0;
+  flex-shrink: 1;
 }
 
-/* === GRID — ІНШІ СТОРІНКИ === */
+/* Кнопки */
+.feedback-buttons {
+  order: 4;
+  flex-grow: 0;
+  flex-shrink: 1;
+
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.feedback-textarea-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.feedback-textarea-wrapper textarea {
+  transition: background-color 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+/* Tooltip */
+.feedback-tooltip {
+  display: none;
+  position: absolute;
+  right: -320px;
+  top: 0;
+  width: 300px;
+  background: #fffbe6;
+  border: 1px solid #ffd27a;
+  padding: 10px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+  border-radius: 6px;
+  z-index: 150;
+}
+
+.feedback-textarea-wrapper.active textarea {
+  background-color: #fff7e6;
+  border: 1px solid #ffb74d;
+  box-shadow: 0 6px 18px rgba(255,160,0,0.18);
+}
+
+.feedback-textarea-wrapper.active .feedback-tooltip {
+  display: block;
+}
+
+
+
+/* =========================================================
+   === 4. HOT-PAGE / ECONOMY-PAGE (Grid) ===
+   ========================================================= */
+
 body.hot-page main,
 body.economy-page main {
   display: grid;
@@ -305,7 +440,49 @@ body.economy-page article:hover {
   transform: scale(1.03);
 }
 
-/* === АДАПТИВНІСТЬ І ПРОКРУТКА === */
+
+
+/* =========================================================
+   === СПІЛЬНІ СТИЛІ ДЛЯ ТАБЛИЦЬ, ASIDE, ТЕКСТУ ===
+   ========================================================= */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  overflow-x: auto;
+  display: block;
+}
+
+th, td {
+  border: 1px solid #aaa;
+  padding: 8px;
+  text-align: center;
+}
+
+caption { font-weight: bold; margin-bottom: 10px; }
+
+aside {
+  background-color: #f9f9f9;
+  padding: 15px;
+  margin: 20px;
+  border: 1px solid #ccc;
+}
+
+h1, h2, h3, p {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+h2 ~ p {
+  color: rgb(60, 60, 60);
+}
+
+
+
+/* =========================================================
+   === ФІНАЛЬНІ СИСТЕМНІ СТИЛІ ===
+   ========================================================= */
 html, body {
   width: 100%;
   height: 100%;
@@ -323,9 +500,4 @@ table {
   width: 100%;
   overflow-x: auto;
   white-space: nowrap;
-}
-
-/* Комбінатор ~ : усі параграфи після заголовка */
-h2 ~ p {
-  color: rgb(60, 60, 60);
 }
